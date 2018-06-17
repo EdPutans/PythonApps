@@ -1,0 +1,14 @@
+import random
+numbah=random.randint(1,9)
+
+guess=raw_input("hi, guess the number: ")
+
+while int(guess) != numbah:
+  
+  if int(guess) > numbah:
+    guess = raw_input("nope, the number is lower. Try again: ")
+  elif int(guess) < numbah:
+    guess = raw_input ("try higher: ")
+while int(guess) == numbah:
+    print ("good job")
+    break
