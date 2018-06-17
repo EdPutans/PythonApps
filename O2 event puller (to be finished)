@@ -1,0 +1,52 @@
+f=open('file.csv','w+')
+day=list()
+event=list()
+month=list()
+year=list()
+
+from bs4 import BeautifulSoup
+import requests
+ 
+def search():
+  for date_title in soup.find_all(class_="date_title"):
+    a=(date_title.a.text.replace('/n',' '))
+    event.append(a)
+  for y in soup.find_all(class_="y"):
+    b=(y.contents[0])
+    year.append(b)
+  for m in soup.find_all(class_="m"):
+    c=(m.contents[0])
+    month.append(c)
+  for d in soup.find_all(class_="d"):
+    h=(d.contents[0])
+    day.append(h)
+  n=0
+  p=int(len(day))-24
+  pp=int(len(month))-24
+  for i in event:
+    print (year[n] + ' ' + month[pp]+ ' ' +day[p] + ' -- ' + event[n])
+    n+=1
+    p+=1
+    
+def clc():
+  event.clear()
+  day.clear()
+  month.clear()
+  year.clear()
+
+
+base_url = 'https://www.theo2.co.uk/events/venue/the-o2-arena'
+r=requests.get(base_url)
+soup=BeautifulSoup(r.text, "html.parser")
+
+
+base_url = 'https://www.theo2.co.uk/events/venue/the-o2-arena/24'
+r=requests.get(base_url)
+soup=BeautifulSoup(r.text, "html.parser")
+search()
+
+
+base_url = 'https://www.theo2.co.uk/events/venue/the-o2-arena/48'
+r=requests.get(base_url)
+soup=BeautifulSoup(r.text, "html.parser")
+search() 
